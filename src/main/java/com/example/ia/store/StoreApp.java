@@ -50,10 +50,9 @@ public class StoreApp {
 
             String heading = """
                     Choose from these Wonderful Products!
-                                                        
                     """;
             String menu = """
-                    
+                                        
                     1) Add a product to your shopping cart
                     2) View your shopping cart
                     3) Return to main menu
@@ -90,7 +89,7 @@ public class StoreApp {
                     """;
             String menu = """
                     
-                    1) Enter a SKU to remove a product from your shopping cart
+                    1) Remove a product from your shopping cart
                     2) Return to previous menu
                                     
                     """;
