@@ -8,8 +8,16 @@ import java.util.Scanner;
 
 public class StoreApp {
 
+    // The collection of Products that are available for sale
+    // I assume that that supply of any particular item is endless
+    //
     private static final HashMap<String, Product> inventory = new HashMap<>();
+
+    // The collection of Products that are in the user's shopping cart
+    // Only a single shopping cart is available
     private static final ArrayList<Product> cart = new ArrayList<>();
+
+    // System.in is the primary input stream
     private static final Scanner cliScanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -17,6 +25,7 @@ public class StoreApp {
         showMainScreen();
     }
 
+    // Displays the initial set of menu choices
     private static void showMainScreen() {
         boolean screen_done = false;
         while (!screen_done) {
@@ -44,6 +53,8 @@ public class StoreApp {
         }
 
     }
+
+    // Displays the screen with the Products list
     private static void showProductsScreen() {
         boolean screen_done = false;
         while (!screen_done) {
@@ -80,6 +91,8 @@ public class StoreApp {
         }
 
     }
+
+    // Displays the screen with the Cart contents
     private static void showCartScreen() {
         boolean screen_done = false;
         while (!screen_done) {
@@ -115,21 +128,31 @@ public class StoreApp {
 
 
     }
+
+    // Utility method to remove item from Cart
+    // and notify the user
     private static void removeFromCart(Product p){
         cart.remove(p);
         printProduct(p);
         System.out.println("   was removed from your cart");
     }
+
+    // Utility method to add item to cart
+    // and notify the user
     private static void addToCart(Product p){
         cart.add(p);
         printProduct(p);
         System.out.println("   was added to your cart!");
     }
+
+    // Print all products in the inventory to the CLI
     private static void printProductList() {
         for (Product p: inventory.values()) {
             printProduct(p);
         }
     }
+
+    // Print all products in the cart to the CLI
     private static void printCart() {
         if (cart.size() == 0){
             System.out.println("Your cart is empty...");
@@ -140,9 +163,14 @@ public class StoreApp {
             }
         }
     }
+
+// Print a single Product to the CLI
     private static void printProduct(Product p){
         System.out.printf("%6s  %-40s  %8.2f\n", p.getSku(), p.getName(), p.getPrice());
     }
+
+    // Read Products from file and insert them
+    // (as Product objects) into the inventory collection
     private static void loadInventory() {
 
         // Open products file
@@ -181,10 +209,14 @@ public class StoreApp {
 
         }
     }
+
+    // Utility method to prompt the user for a string
     private static String promptForInput(String prompt){
         System.out.print(prompt);
         return cliScanner.nextLine();
     }
+
+    // Utility method to report bad input
     private static void badInput() {
         System.out.println("""
                 I'm sorry, I didn't understand that.  Try again...
